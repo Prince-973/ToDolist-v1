@@ -1,0 +1,30 @@
+<%- include("header") -%>
+<div class="container">
+  <h1><%= ListTitle %> Todo List</h1>
+  <ul>
+    <% NewlistItem.forEach((item, i) => { %>
+    <form action="/delete" method="post">
+      <input type="hidden" name="listname" value="<%= ListTitle%>" />
+      <li>
+        <input
+          type="checkbox"
+          name="deletebox"
+          onChange="this.form.submit()"
+          value="<%= item._id %>"
+          id="item<%= i %>"
+          class="checkbox"
+        />
+
+        <label for="item<%= i %>"><%= item.name %></label>
+      </li>
+    </form>
+    <% }); %>
+  </ul>
+
+  <form action="/" method="post" class="item1">
+    <input type="text" name="item" placeholder="Add new item" />
+    <button type="submit" name="list" value="<%= ListTitle%>">Add</button>
+  </form>
+</div>
+
+<%- include("footer") -%>
